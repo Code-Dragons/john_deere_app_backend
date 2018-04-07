@@ -11,6 +11,8 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Exception\HttpResponseException;
 
+use App\Models\User;
+
 class AuthController extends Controller
 {
     /**
@@ -24,7 +26,7 @@ class AuthController extends Controller
     {
         try {
             $this->validate($request, [
-                'email' => 'required|email|max:255',
+                'phone_number' => 'required|string|max:15',
                 'password' => 'required',
             ]);
         } catch (ValidationException $e) {
@@ -95,7 +97,7 @@ class AuthController extends Controller
      */
     protected function getCredentials(Request $request)
     {
-        return $request->only('email', 'password');
+        return $request->only('phone_number', 'password');
     }
 
     /**
@@ -142,5 +144,46 @@ class AuthController extends Controller
             'message' => 'authenticated_user',
             'data' => JWTAuth::parseToken()->authenticate()
         ]);
+    }
+
+    /**
+     * Register new user
+     * @param Request $request
+     */
+    public function register(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:100',
+            'national_id' => 'required|string|max:12',
+            'phone_number' => 'required|string|max:15',
+            'password' => 'required|string|max:100'
+        ]);
+
+        if (!is_numeric($request->national_id)
+            || !is_numeric($request->phone_number)
+            || !is_numeric($request->password)) {
+            return (new JsonResponse(
+                ["error" => "National ID or phone number or password is not a number"],
+                response::HTTP_BAD_REQUEST));
+        }
+
+        $exists = User::where('national_id', $request->national_id)
+            ->orWhere('phone_number', $request->phone_number)
+            ->first();
+
+        if ($exists) {
+            return (new JsonResponse(
+                ['error' => 'National ID or phone number already exists'],
+                response::HTTP_BAD_REQUEST));
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'national_id' => $request->national_id,
+            'phone_number' => $request->phone_number,
+            'password' => app('hash')->make($request->password)
+        ]);
+
+        return (new JsonResponse($user, response::HTTP_OK));
     }
 }
