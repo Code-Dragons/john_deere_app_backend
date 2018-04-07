@@ -19,6 +19,11 @@ $api->version('v1', function ($api) {
         'uses' => 'App\Http\Controllers\Auth\AuthController@postLogin',
     ]);
 
+    $api->post('/auth/register', [
+        'as' => 'api.register',
+        'uses' => 'App\Http\Controllers\Auth\AuthController@register'
+    ]);
+
     $api->group([
         'middleware' => 'api.auth',
     ], function ($api) {

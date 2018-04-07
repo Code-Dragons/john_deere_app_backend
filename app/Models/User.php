@@ -14,7 +14,7 @@ class User extends Model implements
 {
     use Authenticatable, Authorizable;
 
-    protected $table = 'user';
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.

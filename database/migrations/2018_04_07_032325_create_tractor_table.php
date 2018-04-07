@@ -26,6 +26,7 @@ class CreateTractorTable extends Migration
             $table->integer('horsepower');
             $table->integer('drive');
             $table->string('picture');
+            $table->timestamps();
         });
     }
 
