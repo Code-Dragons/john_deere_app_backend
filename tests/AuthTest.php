@@ -32,7 +32,7 @@ class AuthTest extends TestCase
         $email = $this->faker->email;
         $password = str_random(8);
 
-        factory(\App\User::class)->create([
+        factory(\App\Models\User::class)->create([
             'email' => $email,
             'password' => app('hash')->make($password)
         ]);
