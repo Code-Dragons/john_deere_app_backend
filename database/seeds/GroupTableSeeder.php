@@ -15,6 +15,7 @@ class GroupTableSeeder extends Seeder
             'name' => 'Lenken Group',
             'location' => 'Kiambu',
             'tractor_ids' => 1,
+            'loan_amount' => 320000,
         ]);
     }
 }
