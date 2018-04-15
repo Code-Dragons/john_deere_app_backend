@@ -8,13 +8,14 @@
         "php": ">=7.0",
         "laravel/lumen-framework": "5.4.*",
         "vlucas/phpdotenv": "~2.2",
-        "krisanalfa/lumen-dingo-adapter": "^0.0.3"
+        "krisanalfa/lumen-dingo-adapter": "^0.0.3",
+        "flipbox/lumen-generator": "^5.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
-        "phpunit/phpunit": "~5.0",
         "mockery/mockery": "~0.9",
-        "flipbox/lumen-generator": "^5.4"
+        "flipbox/lumen-generator": "^5.4",
+        "phpunit/phpunit": "^7.1"
     },
     "autoload": {
         "psr-4": {
