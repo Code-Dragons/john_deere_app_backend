@@ -18,6 +18,7 @@ class CreateGroupTable extends Migration
             $table->string('name');
             $table->string('location');
             $table->json('tractor_ids')->nullable();
+            $table->integer('loan_amount');
             $table->timestamps();
         });
     }

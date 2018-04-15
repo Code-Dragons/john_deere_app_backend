@@ -24,6 +24,11 @@ $api->version('v1', function ($api) {
         'uses' => 'App\Http\Controllers\Auth\AuthController@register'
     ]);
 
+    $api->get('/auth/report/{user_id}', [
+        'uses' => 'App\Http\Controllers\Report\ReportController@getStats',
+        'as' => 'api.auth.user.report'
+    ]);
+
     $api->group([
         'middleware' => 'api.auth',
     ], function ($api) {

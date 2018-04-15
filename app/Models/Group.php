@@ -19,6 +19,7 @@ class Group extends Model
         'name',
         'location',
         'tractor_ids',
+        'loan_amount',
     ];
 
     protected $casts = [
@@ -28,6 +29,7 @@ class Group extends Model
     public static $rules = [
         'name' => 'required',
         'location' => 'required',
+        'loan_amount' => 'integer',
     ];
 
 
