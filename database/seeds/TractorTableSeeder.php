@@ -35,6 +35,7 @@ class TractorTableSeeder extends Seeder
                 'category' => $faker->randomElement([1,2,3,4,5,6,7,8,]),
                 'drive' => $faker->randomElement([1,2,3,4]),
                 'picture' => $pictures[$i],
+                'amount' => $faker->numberBetween($min = 100000, $max = 2000000),
             ]);
         }
     }

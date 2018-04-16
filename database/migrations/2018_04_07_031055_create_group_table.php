@@ -20,7 +20,6 @@ class CreateGroupTable extends Migration
             $table->json('tractor_ids')->nullable();
             $table->integer('loan_amount')->default(0);
             $table->integer('created_by');
-            $table->json('members');
             $table->timestamps();
 
             $table->foreign('created_by')->references('id')->on('users');

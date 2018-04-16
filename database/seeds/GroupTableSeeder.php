@@ -16,6 +16,7 @@ class GroupTableSeeder extends Seeder
             'location' => 'Kiambu',
             'tractor_ids' => 1,
             'loan_amount' => 320000,
+            'created_by' => 1,
         ]);
     }
 }
