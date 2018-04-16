@@ -26,7 +26,12 @@ class CreateTractorTable extends Migration
             $table->integer('horsepower');
             $table->integer('drive');
             $table->string('picture');
+            $table->decimal('amount', 15, 5);
             $table->timestamps();
+
+            $table->foreign('category')->references('id')->on('tractor_category');
+            $table->foreign('model')->references('id')->on('tractor_model');
+            $table->foreign('drive')->references('id')->on('drive');
         });
     }
 

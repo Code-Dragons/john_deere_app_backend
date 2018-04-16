@@ -20,6 +20,8 @@ class Group extends Model
         'location',
         'tractor_ids',
         'loan_amount',
+        'members',
+        'created_by'
     ];
 
     protected $casts = [

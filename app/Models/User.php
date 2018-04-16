@@ -58,7 +58,7 @@ class User extends Model implements
      */
     public function group()
     {
-        return $this->belongsTo('App\Models\Group');
+        return $this->belongsTo('App\Models\Group', 'id', 'created_by');
     }
 
     /**

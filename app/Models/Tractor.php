@@ -56,7 +56,7 @@ class Tractor extends Model
      */
     public function model()
     {
-        return $this->belongsTo('App\Models\TractorModel');
+        return $this->belongsTo('App\Models\TractorModel', 'model', 'id');
     }
 
     /**
@@ -66,7 +66,7 @@ class Tractor extends Model
      */
     public function category()
     {
-        return $this->belongsTo('App\Models\TractorCategory');
+        return $this->belongsTo('App\Models\TractorCategory', 'category', 'id');
     }
 
     /**
@@ -76,6 +76,6 @@ class Tractor extends Model
      */
     public function drive()
     {
-        return $this->belongsTo('App\Models\Drive');
+        return $this->belongsTo('App\Models\Drive', 'drive', 'id');
     }
 }
