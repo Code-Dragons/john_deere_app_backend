@@ -24,11 +24,6 @@ $api->version('v1', function ($api) {
         'uses' => 'App\Http\Controllers\Auth\AuthController@register'
     ]);
 
-    $api->get('/auth/report/{user_id}', [
-        'uses' => 'App\Http\Controllers\Report\ReportController@getStats',
-        'as' => 'api.auth.user.report'
-    ]);
-
     $api->group([
         'middleware' => 'api.auth',
     ], function ($api) {
@@ -47,6 +42,35 @@ $api->version('v1', function ($api) {
         $api->delete('/auth/invalidate', [
             'uses' => 'App\Http\Controllers\Auth\AuthController@deleteInvalidate',
             'as' => 'api.auth.invalidate'
+        ]);
+    });
+
+    $api->group([
+        'middleware' => 'api.auth',
+    ], function ($api) {
+        $api->post('/groups', [
+            'uses' => 'App\Http\Controllers\GroupController@create',
+            'as' => 'api.create'
+        ]);
+
+        $api->get('/users', [
+            'uses' => 'App\Http\Controllers\GroupController@getUsers',
+            'as' => 'api.users'
+        ]);
+
+        $api->get('/tractors', [
+            'uses' => 'App\Http\Controllers\GroupController@getTractors',
+            'as' => 'api.tractors'
+        ]);
+
+        $api->post('/tractors/select', [
+            'uses' => 'App\Http\Controllers\GroupController@selectTractor',
+            'as' => 'api.tractors.select'
+        ]);
+
+        $api->get('/auth/report/{user_id}', [
+            'uses' => 'App\Http\Controllers\Report\ReportController@getStats',
+            'as' => 'api.auth.user.report'
         ]);
     });
 });
