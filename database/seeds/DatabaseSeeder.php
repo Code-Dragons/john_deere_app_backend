@@ -11,9 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call('UserTableSeeder');
         $this->call('GroupTableSeeder');
         $this->call('CreditStatusTableSeeder');
-        $this->call('UserTableSeeder');
         $this->call('TractorCategoryTableSeeder');
         $this->call('TractorConditionTableSeeder');
         $this->call('TractorModelTableSeeder');
